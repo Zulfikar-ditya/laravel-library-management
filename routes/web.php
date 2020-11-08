@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +43,14 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('book/add-book/', [BookController::class, 'AddBookFunc']);
     // list
     Route::get('book/book-list/', [BookController::class, 'BookList'])->name('bookList');
+    // end book
+
+    // member
+    // add
+    Route::get('member/add-member/', [MemberController::class, 'addView'])->name('addMember');
+    Route::post('member/add-member/', [MemberController::class, 'addFunc']);
+    // list
+    Route::get('member/member-list/', [MemberController::class, 'List'])->name('memberList');
+    // end member
+
 });

@@ -60,7 +60,17 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route ('addCategory')}}">Add category</a>
-                        <a class="dropdown-item" href="{{ route('categoryList') }}">List Category</a>
+                            <a class="dropdown-item" href="{{ route('categoryList') }}">List Category</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Member
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route ('addMember')}}">Add Member</a>
+                            <a class="dropdown-item" href="{{ route('memberList')}}">List Member</a>
                         </div>
                     </li>
                     @else

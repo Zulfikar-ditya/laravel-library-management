@@ -60,6 +60,9 @@ class BookController extends Controller
             elseif ($request->filter == 'status_borrowed_false') {
                 $book = book::where('status_borrowed', '=', 0)->paginate(50);
             }
+            else {
+                return abort('404');
+            }
         }
         else {
             $book = book::paginate(50);
