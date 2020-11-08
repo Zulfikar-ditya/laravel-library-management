@@ -23,13 +23,18 @@ class BookController extends Controller
         $NewData['late_charge_fines'] = $request->input('late_charge_fines');
         $NewData['book_lost_fines'] = $request->input('book_lost_fines');
         $NewData['category'] = $request->input('category');
-        $NewData['category'] = Auth::id();
+        $NewData['user'] = Auth::id();
         $NewData->save();
-        return redirect('book/book-list/');
+        if ($request->input('add')) {
+            return redirect('book/book-list/');
+        }
+        else {
+            return redirect('book/add-book/');
+        }
     }
 
     function BookList() {
-        $book = book::all();
+        $book = book::paginate(50);
         return view('book.list', ['data' => $book]);
     }
 }

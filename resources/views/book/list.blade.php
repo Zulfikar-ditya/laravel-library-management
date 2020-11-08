@@ -13,6 +13,7 @@
                     <th scope="col">late charge fines</th>
                     <th scope="col">lost charge fines</th>
                     <th scope="col">status</th>
+                    <th scope="col">status borrowed</th>
                     <th scope="col">category</th>
                 </thead>
                 <tbody>
@@ -28,11 +29,19 @@
                         @else
                             <td class="text-danger"><i class="fas fa-times"></i></td>
                         @endif
+                        @if ($item['status_borrowed'] == 1) 
+                            <td class="text-success"><i class="far fa-check-circle"></i></td>
+                        @else
+                            <td class="text-danger"><i class="fas fa-times"></i></td>
+                        @endif
                         <td>{{$item['category']}}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="container my-4">
+        {{ $data->links() }}
     </div>
 @endsection
