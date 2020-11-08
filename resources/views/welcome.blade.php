@@ -51,8 +51,6 @@
                             <a class="dropdown-item" href="{{ route ('addBook')}}">Add Book</a>
                             <a class="dropdown-item" href="{{ route('bookList') }}">List Book</a>
                             <a class="dropdown-item" href="#">Book Lost</a>
-                            <a class="dropdown-item" href="#">Book Borrowed</a>
-                            <a class="dropdown-item" href="#">Book Unborrowed</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown active">

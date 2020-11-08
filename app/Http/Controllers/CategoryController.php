@@ -23,8 +23,14 @@ class CategoryController extends Controller
             return redirect('category/add-category');
         }
     }
-    function list() {
-        $data = category::paginate(50);
+    function list(Request $request) {
+        if ($request->search) {
+            $query = $request->input('search');
+            $data = category::where('name', 'like', str_replace('$query$', $query, '%$query$%'))->paginate(50);
+        }
+        else {
+            $data = category::paginate(50);
+        }
         return view('category.list', ['data' => $data]);
     }
 

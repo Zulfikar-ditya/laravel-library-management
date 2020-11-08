@@ -4,6 +4,12 @@
 
 @section('content')
     <div class="container" style="margin-top: 100px;">
+        <form action="" class="form-inline mb-4 text-capitalize" method="get">
+            <div class="form-group">
+                <input type="search" name="search" id="" placeholder="Search..." class="form-control mr-3 mb-3" required>
+                <button type="submit" class="btn btn-outline-info mb-3">Search <i class="fas fa-search"></i></button>
+            </div>
+        </form>
         <div class="table-responseive">
             <table class="table text-capitalize">
                 <thead class="bg-info text-white">

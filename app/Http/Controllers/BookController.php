@@ -33,8 +33,37 @@ class BookController extends Controller
         }
     }
 
-    function BookList() {
-        $book = book::paginate(50);
+    function BookList(Request $request) {
+        if ($request->search) {
+            if ($request->field == 'title') {
+                $field = $request->input('search');
+                $book = book::where('title', 'LIKE', str_replace('$query$', $field, '%$query$%'))->paginate(50);
+            } 
+            elseif ($request->field == 'author') {
+                $author = $request->input('search');
+                $book = book::where('author', 'LIKE', str_replace('$query$', $author, '%$query$%'))->paginate(50);
+            } 
+            else {
+                return abort('404');
+            }
+        } 
+        elseif ($request->filter) {
+            if ($request->filter == 'status_true') {
+                $book = book::where('status', '=', 1)->paginate(50);
+            }
+            elseif ($request->filter == 'status_false') {
+                $book = book::where('status', '=', 0)->paginate(50);
+            }
+            elseif ($request->filter == 'status_borrowed_true') {
+                $book = book::where('status_borrowed', '=', 1)->paginate(50);
+            }
+            elseif ($request->filter == 'status_borrowed_false') {
+                $book = book::where('status_borrowed', '=', 0)->paginate(50);
+            }
+        }
+        else {
+            $book = book::paginate(50);
+        }
         return view('book.list', ['data' => $book]);
     }
 }
