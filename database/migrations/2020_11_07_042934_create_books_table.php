@@ -16,12 +16,16 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->boolean('status')->default(1)->change();
-            $table->integer('late_charge_fines')->default(5000)->change();
-            $table->integer('book_lost_fines')->default(50000)->change();
+            $table->string('author');
+            $table->boolean('status')->default(1);
+            $table->boolean('status_borrowed')->default(0);
+            $table->integer('late_charge_fines')->default(5000);
+            $table->integer('book_lost_fines')->default(50000);
             $table->unsignedBigInteger('category');
+            $table->unsignedBigInteger('user');
 
             $table->foreign('category')->references('id')->on('categories');
+            $table->foreign('user')->references('id')->on('users');
             
             $table->timestamps();
         });

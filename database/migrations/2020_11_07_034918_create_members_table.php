@@ -19,7 +19,7 @@ class CreateMembersTable extends Migration
             $table->text('address');
             $table->string('email')->unique();
             $table->date('date_of_birth');
-            $table->boolean('status')->default(1)->change();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

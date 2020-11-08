@@ -19,7 +19,7 @@ class CreateBorrowingsTable extends Migration
             $table->unsignedBigInteger('member');
             $table->date('date_must_back');
             $table->date('date_back')->nullable();
-            $table->boolean('status_fines')->default(1)->change();
+            $table->boolean('status_fines')->default(1);
 
             $table->foreign('member')->references('id')->on('members');
             $table->foreign('book')->references('id')->on('books');
