@@ -17,12 +17,12 @@
         <form action="" method="get" class="form-inline mb-4">
             <div class="form-group">
                 <label for="" class="mr-3">Filter </label>
-                <select name="filter" id="" class="form-control mr-3" required>
+                <select name="filter" id="" class="form-control mr-3 mb-3" required>
                     <option value="" selected>--------</option>
                     <option value="status_true">Status True</option>
                     <option value="status_false">Status false</option>
                 </select>
-                <button class="btn btn-outline-primary" type="submit">Go <i class="fas fa-external-link-alt"></i></button>
+                <button class="btn btn-outline-primary mb-3" type="submit">Go <i class="fas fa-external-link-alt"></i></button>
             </div>
         </form>
         <div class="table-responsive">

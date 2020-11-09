@@ -8,21 +8,21 @@ use App\Models\category;
 
 class CategoryController extends Controller
 {
-    function AddView() {
+    function Add(Request $request) {
+        if ($request->isMethod('post')) {
+            $newData = new category;
+            $newData['name'] = $request->input('name');
+            $newData->save();
+            if ($request->input('add')) {
+                return redirect('category/category-list/');
+            }
+            else {
+                return redirect('category/add-category');
+            }
+        }
         return view('category.add');
     }
 
-    function AddFunc(Request $request) {
-        $newData = new category;
-        $newData['name'] = $request->input('name');
-        $newData->save();
-        if ($request->input('add')) {
-            return redirect('category/category-list/');
-        }
-        else {
-            return redirect('category/add-category');
-        }
-    }
     function list(Request $request) {
         if ($request->search) {
             $query = $request->input('search');
@@ -34,8 +34,15 @@ class CategoryController extends Controller
         return view('category.list', ['data' => $data]);
     }
 
-    function edit($id) {
+    function edit(Request $request, $id) {
+        if ($request->isMethod('post')) {
+            $getCategory = category::findOrFail($id);
+            $getCategory['name'] = $request->name;
+            $getCategory->save();
+            return redirect('category/category-list/');
+        }
         $getCategory = category::findOrFail($id);
         return view('category.edit', ['data' => $getCategory]);
     }
+
 }

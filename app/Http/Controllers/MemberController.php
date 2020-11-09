@@ -8,23 +8,22 @@ use App\Models\member;
 
 class MemberController extends Controller
 {
-    function addView() {
+    function add(Request $request) {
+        if ($request->isMethod('post')) {
+            $newData = new member;
+            $newData['name'] = $request->name;
+            $newData['address'] = $request->address;
+            $newData['email'] = $request->email;
+            $newData['date_of_birth'] = $request->date_of_birth;
+            $newData->save();
+            if ($request->add) {
+                return redirect('member/member-list');
+            }
+            else {
+                return redirect('member/add-member');
+            }
+        }
         return view('member.add');
-    }
-
-    function addFunc(Request $request) {
-        $newData = new member;
-        $newData['name'] = $request->name;
-        $newData['address'] = $request->address;
-        $newData['email'] = $request->email;
-        $newData['date_of_birth'] = $request->date_of_birth;
-        $newData->save();
-        if ($request->add) {
-            return redirect('member/member-list');
-        }
-        else {
-            return redirect('member/add-member');
-        }
     }
 
     function List(Request $request) {
