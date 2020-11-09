@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\BorrowingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +55,12 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('member/member-list/', [MemberController::class, 'List'])->name('memberList');
     // end member
 
+    // borrowing
+    // select member
+    Route::get('borrow/add/select-member/', [BorrowingController::class, 'Select'])->name('selectMemberBorrow');
+    Route::post('borrow/add/select-member/', [BorrowingController::class, 'Select']);
+    // select book
+    Route::get('borrow/add/select-book/{id}/', [BorrowingController::class, 'Add']);
+    Route::post('borrow/add/select-book/{id}/', [BorrowingController::class, 'Add']);
+    // end borrowing
 });

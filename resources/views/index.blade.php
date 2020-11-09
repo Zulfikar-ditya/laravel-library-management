@@ -125,7 +125,7 @@
                 <li class="list-group-item bg-info text-center text-white h3">Borrowing</li>
 
                 <li class="list-group-item">Add Borrowing
-                    <a href="" class="btn btn-sm btn-outline-info float-right">
+                    <a href="{{ route('selectMemberBorrow') }}" class="btn btn-sm btn-outline-info float-right">
                         Go To Page
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-up-right"
                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
