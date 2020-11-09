@@ -11,6 +11,15 @@
                         Add Member
                     </div>
                     <div class="card-body border-info text-capitalize">
+                        @if (session('add-success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Succcess Add Data
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @endif
+
                         <form action="" method="post">
                             @csrf
                             <div class="form-group">

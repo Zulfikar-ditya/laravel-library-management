@@ -4,6 +4,14 @@
 
 @section('content')
     <div class="container" style="margin-top: 100px">
+        @if (session('add-success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Succcess Add Data
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         <form action="" class="form-inline mb-4 text-capitalize" method="get">
             <div class="form-group">
                 <select name="field" id="" class="form-control mr-3 mb-3">
@@ -14,6 +22,7 @@
                 <button type="submit" class="btn btn-outline-info mb-3">Search <i class="fas fa-search"></i></button>
             </div>
         </form>
+
         <form action="" method="get" class="form-inline mb-4">
             <div class="form-group">
                 <label for="" class="mr-3">Filter </label>
@@ -25,6 +34,7 @@
                 <button class="btn btn-outline-primary mb-3" type="submit">Go <i class="fas fa-external-link-alt"></i></button>
             </div>
         </form>
+        
         <div class="table-responsive">
             <table class="table text-capitalize">
                 <thead class="bg-info text-white">
@@ -51,5 +61,8 @@
                 </tbody>
             </table>
         </div>
-    </div>    
+    </div>  
+    <div class="container my-4">
+        {{ $data->links() }}
+    </div>  
 @endsection

@@ -13,6 +13,7 @@ class CategoryController extends Controller
             $newData = new category;
             $newData['name'] = $request->input('name');
             $newData->save();
+            $request->session()->flash('add-success');
             if ($request->input('add')) {
                 return redirect('category/category-list/');
             }
@@ -39,6 +40,7 @@ class CategoryController extends Controller
             $getCategory = category::findOrFail($id);
             $getCategory['name'] = $request->name;
             $getCategory->save();
+            $request->session()->flash('edit-success');
             return redirect('category/category-list/');
         }
         $getCategory = category::findOrFail($id);

@@ -4,6 +4,15 @@
 
 @section('content')
     <div class="container" style="margin-top: 100px">
+        
+        @if (session('add-success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Succcess Add Data
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @endif
 
         <form action="" class="form-inline mb-3 text-capitalize" method="get">
             <div class="form-group">

@@ -16,6 +16,7 @@ class MemberController extends Controller
             $newData['email'] = $request->email;
             $newData['date_of_birth'] = $request->date_of_birth;
             $newData->save();
+            $request->session()->flash('add-success');
             if ($request->add) {
                 return redirect('member/member-list');
             }

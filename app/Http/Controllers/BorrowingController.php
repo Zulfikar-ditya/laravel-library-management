@@ -15,7 +15,7 @@ class BorrowingController extends Controller
         if ($request->isMethod('post')) {
             $getMember = member::find($request->id);
             if ($getMember == NULL) {
-                $request->session()->flash('error', 'Member Not Found');
+                $request->session()->flash('error');
                 return redirect('borrow/add/select-member');
             }
             $redirect = str_replace('$id$', $getMember['id'], 'borrow/add/select-book/$id$');

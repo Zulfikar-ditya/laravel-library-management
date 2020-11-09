@@ -7,10 +7,20 @@
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="card">
+
                     <div class="card-header bg-info text-white text-center h3">
                         Add
                     </div>
+
                     <div class="card-body p-4 text-capitalize">
+                        @if (session('add-success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Succcess Add Data
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        @endif
                         <form action="" method="post">
                             @csrf
                             <div class="form-group">
@@ -41,6 +51,7 @@
                             <input type="submit" value="Add And Add Another" name="add_and_add_another" class="btn btn-outline-success">
                         </form>
                     </div>
+                    
                 </div>
             </div>
         </div>

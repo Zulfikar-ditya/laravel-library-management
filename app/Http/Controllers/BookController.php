@@ -21,6 +21,7 @@ class BookController extends Controller
             $NewData['category'] = $request->input('category');
             $NewData['user'] = Auth::id();
             $NewData->save();
+            $request->session()->flash('add-success');
             if ($request->input('add')) {
                 return redirect('book/book-list/');
             }
