@@ -45,6 +45,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('book/add-book/', [BookController::class, 'AddBook']);
     // list
     Route::get('book/book-list/', [BookController::class, 'BookList'])->name('bookList');
+    // edit
+    Route::get('book/edit-book/{id}', [BookController::class, 'edit'])->name('editBook');
+    Route::post('book/edit-book/{id}', [BookController::class, 'edit']);
+
     // end book
 
     // member
@@ -53,6 +57,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('member/add-member/', [MemberController::class, 'add']);
     // list
     Route::get('member/member-list/', [MemberController::class, 'List'])->name('memberList');
+    // edit
+    Route::get('member/edit-member/{id}', [MemberController::class, 'edit'])->name('editMember');
+    Route::post('member/edit-member/{id}', [MemberController::class, 'edit']);
     // end member
 
     // borrowing

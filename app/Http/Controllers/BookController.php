@@ -69,4 +69,19 @@ class BookController extends Controller
         }
         return view('book.list', ['data' => $book]);
     }
+
+    function edit($id, Request $request) {
+        $data = book::findOrFail($id);
+        $categories = category::all();
+        if($request->isMethod('post')) {
+            $data['title'] = $request->title;
+            $data['author'] = $request->author;
+            $data['book_lost_fines'] = $request->book_lost_fines;
+            $data['category'] = $request->category;
+            $data->save();
+            $request->session()->flash('success');
+            return redirect('book/book-list/');
+        }
+        return view('book.edit', ['data' => $data, 'categories' => $categories]);
+    }
 }

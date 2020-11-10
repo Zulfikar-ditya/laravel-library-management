@@ -57,4 +57,23 @@ class MemberController extends Controller
         }
         return view('member.list', ['data' => $data]);
     }
+
+    function edit(Request $request, $id) {
+        $data = member::findOrfail($id);
+        if ($request->isMethod('post')) {
+            $data['name'] = $request->name;
+            $data['address'] = $request->address;
+            $data['email'] = $request->email;
+            if ($request->status == NULL) {
+                $data['status'] = 0;
+            }
+            else {
+                $data['status'] = 1;
+            }
+            $data->save();
+            $request->session()->flash('success-edit');
+            return redirect('member/member-list/');
+        }
+        return view('member.edit', ['data' => $data]);
+    }
 }

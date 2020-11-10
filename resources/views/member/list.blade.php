@@ -12,6 +12,16 @@
             </button>
         </div>
         @endif
+
+        @if (session('success-edit'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Succcess Edit Data
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+
         <form action="" class="form-inline mb-4 text-capitalize" method="get">
             <div class="form-group">
                 <select name="field" id="" class="form-control mr-3 mb-3">
@@ -43,6 +53,7 @@
                     <th scope="col">email</th>
                     <th scope="col">date of birth</th>
                     <th scope="col">status</th>
+                    <th scope="col">action</th>
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
@@ -56,6 +67,7 @@
                         @else
                         <td class="text-danger"><i class="fas fa-times"></i></td>
                         @endif
+                    <td><a href="{{ route('editMember', ['id' => $item['id']] ) }}" class="btn btn-outline-info">Edit</a></td>
                     </tr>
                     @endforeach
                 </tbody>

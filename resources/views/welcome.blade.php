@@ -78,6 +78,18 @@
                             <a class="dropdown-item" href="{{ route('memberList')}}">List Member</a>
                         </div>
                     </li>
+
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Borrowing
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route ('addBook')}}">Add Borrowing</a>
+                            <a class="dropdown-item" href="">List </a>
+                        </div>
+                    </li>
+
                     @else
                     <li class="nav-item dropdown">
                         <a href="{{ route('login')}}" class="nav-link active">Login<i

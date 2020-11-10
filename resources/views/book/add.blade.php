@@ -33,7 +33,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">late charge fines <span class="text-danger">*</span></label>
-                                <input type="number" name="late_charge_fines" id="" class="form-control" value="5000" min="5000" required>
+                                <input type="number" name="late_charge_fines" id="" class="form-control" value="5000" min="5000" required readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">book lost fines<span class="text-danger">*</span></label>
@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label for="">category</label>
                                 <select name="category" id="" class="form-control">
-                                    @foreach ($categories as $item)
+                                  liat  @foreach ($categories as $item)
                                         <option value="{{$item['id']}}">{{$item['name']}}</option>
                                     @endforeach
                                 </select>

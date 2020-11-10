@@ -14,6 +14,15 @@
           </div>
         @endif
 
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Succcess Edit Data
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @endif
+
         <form action="" class="form-inline mb-3 text-capitalize" method="get">
             <div class="form-group">
                 <select name="field" id="" class="form-control mr-3 mb-3">
@@ -46,11 +55,10 @@
                     <th scope="col">ID</th>
                     <th scope="col">title</th>
                     <th scope="col">author</th>
-                    <th scope="col">late charge fines</th>
-                    <th scope="col">lost charge fines</th>
                     <th scope="col">status</th>
                     <th scope="col">status borrowed</th>
                     <th scope="col">category</th>
+                    <th scope="col">action</th>
                 </thead>
 
                 <tbody>
@@ -59,8 +67,6 @@
                         <th scope="row">{{$item['id']}}</th>
                         <td>{{$item['title']}}</td>
                         <td>{{$item['author']}}</td>
-                        <td>{{$item['late_charge_fines']}}</td>
-                        <td>{{$item['book_lost_fines']}}</td>
                         @if ($item['status'] == 1) 
                             <td class="text-success"><i class="far fa-check-circle"></i></td>
                         @else
@@ -72,6 +78,7 @@
                             <td class="text-danger"><i class="fas fa-times"></i></td>
                         @endif
                         <td>{{$item['category']}}</td>
+                    <td><a href="{{ route('editBook', ['id' => $item['id']] ) }}" class="btn btn-outline-success">Edit</a></td>
                     </tr>
                     @endforeach
                 </tbody>
