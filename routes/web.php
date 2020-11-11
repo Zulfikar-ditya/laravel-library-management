@@ -69,5 +69,8 @@ Route::group(['middleware' => ['auth']], function(){
     // select book
     Route::get('borrow/add/select-book/{id}/', [BorrowingController::class, 'Add']);
     Route::post('borrow/add/select-book/{id}/', [BorrowingController::class, 'Add']);
+    // list
+    Route::get('borrow/list/', [BorrowingController::class, 'list'])->name('listBorrow');
+
     // end borrowing
 });

@@ -49,7 +49,7 @@
         </form>
 
         <div class="table-responsive">
-            <table class="table text-capitalize">
+            <table class="table text-capitalize table-hover">
 
                 <thead class="bg-info text-white">
                     <th scope="col">ID</th>

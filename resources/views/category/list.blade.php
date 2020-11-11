@@ -14,7 +14,7 @@
         @endif
         @if (session('edit-success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Succcess edit Data
+            Succcess Edit Data
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -29,7 +29,7 @@
         </form>
 
         <div class="table-responseive">
-            <table class="table text-capitalize">
+            <table class="table text-capitalize table-hover">
                 <thead class="bg-info text-white">
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>

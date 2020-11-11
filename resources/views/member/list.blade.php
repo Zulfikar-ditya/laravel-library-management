@@ -1,6 +1,6 @@
 @extends('welcome')
 
-@section('title', 'Member - List Member')
+@section('title', '| Member - List Member')
 
 @section('content')
     <div class="container" style="margin-top: 100px">
@@ -46,7 +46,7 @@
         </form>
         
         <div class="table-responsive">
-            <table class="table text-capitalize">
+            <table class="table text-capitalize table-hover">
                 <thead class="bg-info text-white">
                     <th scope="col">Id</th>
                     <th scope="col">name</th>
