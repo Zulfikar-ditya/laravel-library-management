@@ -65,7 +65,7 @@
                     @foreach ($data as $item)
                     <tr>
                         <th scope="row">{{$item['id']}}</th>
-                        <td>{{$item['title']}}</td>
+                    <td><a href="{{ route('historyBook', ['id' => $item['id']]) }}">{{$item['title']}}</a></td>
                         <td>{{$item['author']}}</td>
                         @if ($item['status'] == 1) 
                             <td class="text-success"><i class="far fa-check-circle"></i></td>

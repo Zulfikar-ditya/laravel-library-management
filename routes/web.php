@@ -48,7 +48,8 @@ Route::group(['middleware' => ['auth']], function(){
     // edit
     Route::get('book/edit-book/{id}', [BookController::class, 'edit'])->name('editBook');
     Route::post('book/edit-book/{id}', [BookController::class, 'edit']);
-
+    // detail
+    Route::get('book/history-detail/{id}', [BookController::class, 'DetailHistory'])->name('historyBook');
     // end book
 
     // member
@@ -60,6 +61,8 @@ Route::group(['middleware' => ['auth']], function(){
     // edit
     Route::get('member/edit-member/{id}', [MemberController::class, 'edit'])->name('editMember');
     Route::post('member/edit-member/{id}', [MemberController::class, 'edit']);
+    // detail
+    Route::get('member/history-detail/{id}/', [MemberController::class, 'detailHistory'])->name('detailMember');
     // end member
 
     // borrowing

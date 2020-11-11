@@ -59,7 +59,7 @@
                     @foreach ($data as $item)
                     <tr>
                         <th scope="row">{{$item['id']}}</th>
-                        <td>{{$item['name']}}</td>
+                        <td><a href="{{ route('detailMember', ['id' => $item['id']])}}">{{$item['name']}}</a></td>
                         <td>{{$item['email']}}</td>
                         <td>{{$item['date_of_birth']}}</td>
                         @if ($item['status'] == 1) 

@@ -69,8 +69,26 @@ class BorrowingController extends Controller
         }
         return view('borrowing.add-borrow', ['member' => $member,]);
     }
-    function list() {
+    function list(Request $request) {
         $data = borrowing::where('status', '=', 1)->paginate(50);
+        // if($request->field) {
+        //     if($request->field == ['name']) {
+
+        //     }
+        //     elseif($request->field == ['book']) {
+                
+        //     }
+        // }
+
+        if ($request->filter) {
+            if($request->filter == 'status_true') {
+                $data = borrowing::where('status_fines', '=', 1)->paginate(50);
+            }
+            elseif ($request->filter == 'status_false') {
+                $data = borrowing::where('status_fines', '=', 0)->paginate(50);
+            }
+        }
+
         return view('borrowing.list', ['data' => $data]);
     }
 }

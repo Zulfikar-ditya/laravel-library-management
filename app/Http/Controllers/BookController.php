@@ -8,6 +8,7 @@ use Illuminate\SUpport\Facades\Auth;
 
 use App\Models\book;
 use App\Models\category;
+use App\Models\borrowing;
 
 class BookController extends Controller
 {
@@ -83,5 +84,11 @@ class BookController extends Controller
             return redirect('book/book-list/');
         }
         return view('book.edit', ['data' => $data, 'categories' => $categories]);
+    }
+
+    function DetailHistory($id) {
+        $book = book::findOrFail($id);
+        $borrow = borrowing::where('book', '=', $book['id'])->paginate(50);
+        return view('book.history-detail', ['book' => $book, 'borrow' => $borrow]);
     }
 }

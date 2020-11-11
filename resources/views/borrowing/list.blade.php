@@ -12,9 +12,31 @@
             </button>
         </div>
         @endif
+        <form action="" class="form-inline mb-4 text-capitalize" method="get">
+            <div class="form-group">
+                <select name="field" id="" class="form-control mr-3 mb-3">
+                    <option value="member">member</option>
+                    <option value="book">book</option>
+                </select>
+                <input type="search" name="search" id="" class="form-control mr-3 mb-3" placeholder="Use Id Book Or Member" required>
+                <button type="submit" class="btn btn-outline-info mb-3">Search <i class="fas fa-search"></i></button>
+            </div>
+        </form>
+
+        <form action="" method="get" class="form-inline mb-4">
+            <div class="form-group">
+                <label for="" class="mr-3">Filter </label>
+                <select name="filter" id="" class="form-control mr-3 mb-3" required>
+                    <option value="" selected>--------</option>
+                    <option value="status_true">Status Fines True</option>
+                    <option value="status_false">Status Fines False</option>
+                </select>
+                <button class="btn btn-outline-primary mb-3" type="submit">Go <i class="fas fa-external-link-alt"></i></button>
+            </div>
+        </form>
         <div class="table-resposive table-hover">
             <table class="table ">
-                <thead class="bg-info text-white text-uppercase">
+                <thead class="bg-info text-white text-capitalize">
                     <th scope="col">#</th>
                     <th scope="col">Book</th>
                     <th scope="col">member</th>
@@ -45,4 +67,7 @@
             </table>
         </div>
     </div>
+    <div class="container my-4">
+        {{ $data->links() }}
+    </div>  
 @endsection

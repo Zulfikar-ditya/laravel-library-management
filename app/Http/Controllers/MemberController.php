@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\member;
+use App\Models\borrowing;
 
 class MemberController extends Controller
 {
@@ -75,5 +76,11 @@ class MemberController extends Controller
             return redirect('member/member-list/');
         }
         return view('member.edit', ['data' => $data]);
+    }
+
+    function detailHistory($id) {
+        $member = member::findOrFail($id);
+        $borrow = borrowing::where('member', '=', $member['id'])->paginate(50);
+        return view('member.detail-history', ['member' => $member, 'borrow' => $borrow]);
     }
 }
