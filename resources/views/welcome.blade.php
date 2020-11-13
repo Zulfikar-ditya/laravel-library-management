@@ -87,6 +87,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route ('selectMemberBorrow')}}">Add Borrowing</a>
                             <a class="dropdown-item" href="{{ route('listBorrow') }}">List Borrowing</a>
+                            <a class="dropdown-item" href="{{ route('returnBook') }}">Return Book</a>
                         </div>
                     </li>
 

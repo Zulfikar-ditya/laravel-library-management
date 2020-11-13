@@ -91,4 +91,8 @@ class BookController extends Controller
         $borrow = borrowing::where('book', '=', $book['id'])->paginate(50);
         return view('book.history-detail', ['book' => $book, 'borrow' => $borrow]);
     }
+
+    function BookLost() {
+        
+    }
 }

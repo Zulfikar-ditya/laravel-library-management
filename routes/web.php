@@ -74,6 +74,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('borrow/add/select-book/{id}/', [BorrowingController::class, 'Add']);
     // list
     Route::get('borrow/list/', [BorrowingController::class, 'list'])->name('listBorrow');
-
+    //  return book
+    Route::get('borrow/return/input-book', [BorrowingController::class, 'returnBook_select_book'])->name('returnBook');
+    Route::post('borrow/return/input-book', [BorrowingController::class, 'returnBook_select_book'])->name('returnBook');
+    Route::get('borrow/return/book/{id}', [BorrowingController::class, 'returnBook'])->name('returnBookValid');
+    Route::post('borrow/return/book/{id}', [BorrowingController::class, 'returnBook'])->name('returnBookValid');
+    
     // end borrowing
 });

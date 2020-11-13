@@ -82,13 +82,70 @@ class BorrowingController extends Controller
 
         if ($request->filter) {
             if($request->filter == 'status_true') {
-                $data = borrowing::where('status_fines', '=', 1)->paginate(50);
+                $data = borrowing::where('status', '=', 1, 'and', 'status_fines', '=', 1,)->paginate(50);
             }
             elseif ($request->filter == 'status_false') {
-                $data = borrowing::where('status_fines', '=', 0)->paginate(50);
+                $data = borrowing::where('status', '=', 1, 'and','status_fines', '=', 0)->paginate(50);
             }
         }
 
         return view('borrowing.list', ['data' => $data]);
     }
+
+    function returnBook_select_book(Request $request) {
+        if ($request->isMethod('post')) {
+            $getBook = book::find($request->bookid);
+            if ($getBook == NULL) {
+                $request->session()->flash('book_not_found');
+                return redirect('borrow/return/input-book');
+            }
+            if ($getBook['status_borrowed'] == 0) {
+                $request->session()->flash('book_not_borrowed');
+                return redirect('borrow/return/input-book');
+            }
+            if ($getBook['status'] == 0) {
+                $request->session()->flash('book_not_exist');
+                return redirect('borrow/return/input-book');
+            }
+            return redirect(route('returnBookValid', ['id' => $getBook['id']]));
+        }
+        return view('borrowing.return-book-input');
+    }
+
+    function returnBook(Request $request, $id) {
+        $GetBook = book::find($id);
+        if ($GetBook == NULL) {
+            $request->session()->flash('book_not_found');
+            return redirect('borrow/return/input-book');
+        }
+        if ($GetBook['status_borrowed'] == 0) {
+            $request->session()->flash('book_not_borrowed');
+            return redirect('borrow/return/input-book');
+        }
+        if ($GetBook['status'] == 0) {
+            $request->session()->flash('book_not_exist');
+            return redirect('borrow/return/input-book');
+        }
+        $bookID = str_replace('$id$', $GetBook['id'], '$id$');
+        $borrow = borrowing::where('status', '=', 1, 'and', 'book', '=', $bookID)->get();
+        // return $borrow[0]->status;
+        if ($borrow[0]->status == 0) {
+            $request->session()->flash('book_already_returned');
+            return redirect('borrow/return/input-book');
+        }
+        if($request->isMethod('post')) {
+            $borrow[0]->status = 0;
+            $borrow[0]->save();
+            $GetBook['status_borrowed'] = 0;
+            $GetBook->save();
+            if($request->return_book) {
+                return redirect('borrow/list/');
+            }
+            else {
+                return redirect('borrow/return/input-book');
+            }
+        }
+        return view('borrowing.return-book-detail', ['borrow' => $borrow]);
+    }
+
 }
