@@ -13,15 +13,6 @@
         </div>
         @endif
 
-        @if (session('success-edit'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Succcess Edit Data
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        @endif
-
         <form action="" class="form-inline mb-4 text-capitalize" method="get">
             <div class="form-group">
                 <select name="field" id="" class="form-control mr-3 mb-3">

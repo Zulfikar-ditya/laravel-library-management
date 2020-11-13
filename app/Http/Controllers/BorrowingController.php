@@ -9,8 +9,18 @@ use App\Models\borrowing;
 use App\Models\book;
 
 
+function FineCheck($id) {
+    $borrow = borrowing::find($id)->get();
+    if (strtotime($borrow[0]['date_must_back']) < date('Y-m-d')) {
+        $borrow[0]['status_fines'] = 1;
+        $borrow[0]->save();
+    }
+    return $borrow;
+}
+
 class BorrowingController extends Controller
 {
+
     function Select(Request $request) {
         if ($request->isMethod('post')) {
             $getMember = member::find($request->id);
@@ -58,6 +68,7 @@ class BorrowingController extends Controller
             $new['book'] = $getbook['id'];
             $new['member'] = $member['id'];
             $new['date_must_back'] = date('Y-m-d', strtotime('+7 days'));
+            $new['date_add'] = date('Y-m-d');
             $new->save();
             $request->session()->flash('add_success');
             if($request->add) {
@@ -87,6 +98,12 @@ class BorrowingController extends Controller
             elseif ($request->filter == 'status_false') {
                 $data = borrowing::where('status', '=', 1, 'and','status_fines', '=', 0)->paginate(50);
             }
+        }
+
+        foreach ($data as $item) {
+            if ($item['status'] == 0) {
+                FineCheck($item);
+            } 
         }
 
         return view('borrowing.list', ['data' => $data]);
@@ -135,6 +152,7 @@ class BorrowingController extends Controller
         }
         if($request->isMethod('post')) {
             $borrow[0]->status = 0;
+            $borrow[0]->date_back = date('Y-m-d');
             $borrow[0]->save();
             $GetBook['status_borrowed'] = 0;
             $GetBook->save();

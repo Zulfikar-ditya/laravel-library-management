@@ -17,6 +17,7 @@ class CreateBorrowingsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('book');
             $table->unsignedBigInteger('member');
+            $table->date('date_add');
             $table->date('date_must_back');
             $table->date('date_back')->nullable();
             $table->boolean('status')->default(1);

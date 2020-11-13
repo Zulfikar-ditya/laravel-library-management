@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <td>date borrow</td>
-                        <td>{{$borrow[0]->created_at}}</td>
+                        <td>{{$borrow[0]->date_add}}</td>
                     </tr>
                     <tr>
                         <td>date must back</td>

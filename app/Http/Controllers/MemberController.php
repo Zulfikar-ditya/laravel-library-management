@@ -61,6 +61,7 @@ class MemberController extends Controller
 
     function edit(Request $request, $id) {
         $data = member::findOrfail($id);
+        $redirect = str_replace('$id$', $data['id'], 'member/history-detail/$id$');
         if ($request->isMethod('post')) {
             $data['name'] = $request->name;
             $data['address'] = $request->address;
@@ -73,7 +74,8 @@ class MemberController extends Controller
             }
             $data->save();
             $request->session()->flash('success-edit');
-            return redirect('member/member-list/');
+            // return redirect('member/member-list/');
+            return redirect($redirect);
         }
         return view('member.edit', ['data' => $data]);
     }

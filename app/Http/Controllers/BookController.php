@@ -74,6 +74,7 @@ class BookController extends Controller
     function edit($id, Request $request) {
         $data = book::findOrFail($id);
         $categories = category::all();
+        $redirect = str_replace('$id$', $data['id'], 'book/history-detail/$id$');
         if($request->isMethod('post')) {
             $data['title'] = $request->title;
             $data['author'] = $request->author;
@@ -81,7 +82,8 @@ class BookController extends Controller
             $data['category'] = $request->category;
             $data->save();
             $request->session()->flash('success');
-            return redirect('book/book-list/');
+            // return redirect('book/book-list/');
+            return redirect($redirect);
         }
         return view('book.edit', ['data' => $data, 'categories' => $categories]);
     }

@@ -38,7 +38,7 @@
                             @endif
                             <label for="">status </label>
                         </div>
-                        <input type="submit" value="Add" name="Save" class="btn btn-outline-info">
+                        <input type="submit" value="Save" name="Save" class="btn btn-outline-info">
                     </form>
                 </div>
             </div>

@@ -4,6 +4,14 @@
 
 @section('content')
     <div class="container" style="margin-top: 100px">
+        @if (session('success-edit'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Succcess Edit Data
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         <div class="table-responsive table-hover">
             <table class="table">
                 <thead class="bg-info text-center text-white">
@@ -69,7 +77,7 @@
                     @endif
                         <th scope="row">{{$item['id']}}</th>
                         <td>{{$item['book']}}</td>
-                        <td>{{$item['created_at']}}</td>
+                        <td>{{$item['date_add']}}</td>
                         <td>{{$item['date_must_back']}}</td>
                         @if ($item['date_back'] == NULL)
                         <td>-</td>
