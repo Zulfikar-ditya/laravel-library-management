@@ -166,4 +166,52 @@ class BorrowingController extends Controller
         return view('borrowing.return-book-detail', ['borrow' => $borrow]);
     }
 
+    function BorrowingExtentionsInput(Request $request) {
+        if ($request->isMethod('post')) {
+            $book = book::find($request->book_id);
+            if ($book == NULL) {
+                $request->session()->flash('book_not_exist');
+                return redirect(route('BorrowingExtentionsInput'));
+            }
+            if ($book['status_borrowed'] == 0) {
+                $request->session()->flash('book_not_borrowed');
+                return redirect(route('BorrowingExtentionsInput'));
+            }
+            else {
+                $borrow = borrowing::where('book', '=', $book['id'], 'and', 'status', '=', 1)->get();
+                return redirect(route('BorrowingExtentionDetail', ['book_id' => $book['id'], 'borrow_id' => $borrow[0]['id'] ]));
+            }
+        }
+        return view('borrowing.extension-borrowing');
+    }
+
+    function BorrowingExtentionDetail(Request $request, $book_id, $borrow_id) {
+        $book = book::find($book_id);
+        if ($book == NULL) {
+            $request->session()->flash('book_not_exist');
+            return redirect(route('BorrowingExtentionsInput'));
+        }
+        if ($book['status_borrowed'] == 0) {
+            $request->session()->flash('book_not_borrowed');
+            return redirect(route('BorrowingExtentionsInput'));
+        }
+        $borrow = borrowing::where('status', '=', 1, 'and', 'book', '=', $book['id'])->get();
+        if ($request->isMethod('post')) {
+            if($request->length == 7) {
+                $borrow[0]['date_must_back'] =  date('Y-m-d', strtotime('+7 days'));
+            }
+            else {
+                $borrow[0]['date_must_back'] =  date('Y-m-d', strtotime('+14 days'));
+            }
+            $borrow[0]->save();
+            if ($request->Save) {
+                return redirect(route('listBorrow'));
+            }
+            else {
+                return redirect(route('BorrowingExtentionsInput'));
+            }
+        } 
+        return view('borrowing.extension-detail', ['book' => $book, 'borrow' => $borrow]);
+    }
+
 }

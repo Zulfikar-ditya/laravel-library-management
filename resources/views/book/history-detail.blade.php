@@ -3,69 +3,70 @@
 @section('title', '| Book - Detail and History')
 
 @section('content')
-    <div class="container" style="margin-top: 100px">
-        @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Succcess Edit Data
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        @endif
-        <div class="table-responsive table-hover">
-            <table class="table">
-                <thead class="bg-info text-center text-white">
-                    <th>Book</th>
-                    <th>Info</th>
-                </thead>
-                <tbody class="text-center text-capitalize">
-                    <tr>
-                        <td>Name</td>
-                        <td>{{$book['title']}}</td>
-                    </tr>
-                    <tr>
-                        <td>author</td>
-                        <td>{{$book['author']}}</td>
-                    </tr>
-                    <tr>
-                        <td>status</td>
-                        @if ($book['status'] == 1)
-                        <td class="text-success"><i class="far fa-check-circle"></i></td>
-                        @else
-                        <td class="text-success"><i class="fas fa-times"></i></td>
-                        @endif
-                    </tr>
-                    <tr>
-                        <td>status borrow</td>
-                        @if ($book['status_borrowed'] == 1)
-                        <td class="text-success"><i class="far fa-check-circle"></i></td>
-                        @else
-                        <td class="text-success"><i class="fas fa-times"></i></td>
-                        @endif
-                    </tr>
-                    <tr>
-                        <td>late charge fines</td>
-                        <td>{{$book['late_charge_fines']}}</td>
-                    </tr>
-                    <tr>
-                        <td>book lost fines</td>
-                        <td>{{$book['book_lost_fines']}}</td>
-                    </tr>
-                    <tr>
-                        <td>category</td>
-                        <td>{{$book['category']}}</td>
-                    </tr>
+<div class="container" style="margin-top: 100px">
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Succcess Edit Data
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    <div class="table-responsive table-hover">
+        <table class="table">
+            <thead class="bg-info text-center text-white">
+                <th>Book</th>
+                <th>Info</th>
+            </thead>
+            <tbody class="text-center text-capitalize">
+                <tr>
+                    <td>Name</td>
+                    <td>{{$book['title']}}</td>
+                </tr>
+                <tr>
+                    <td>author</td>
+                    <td>{{$book['author']}}</td>
+                </tr>
+                <tr>
+                    <td>status</td>
+                    @if ($book['status'] == 1)
+                    <td class="text-success"><i class="far fa-check-circle"></i></td>
+                    @else
+                    <td class="text-success"><i class="fas fa-times"></i></td>
+                    @endif
+                </tr>
+                <tr>
+                    <td>status borrow</td>
+                    @if ($book['status_borrowed'] == 1)
+                    <td class="text-success"><i class="far fa-check-circle"></i></td>
+                    @else
+                    <td class="text-success"><i class="fas fa-times"></i></td>
+                    @endif
+                </tr>
+                <tr>
+                    <td>late charge fines</td>
+                    <td>{{$book['late_charge_fines']}}</td>
+                </tr>
+                <tr>
+                    <td>book lost fines</td>
+                    <td>{{$book['book_lost_fines']}}</td>
+                </tr>
+                <tr>
+                    <td>category</td>
+                    <td>{{$book['category']}}</td>
+                </tr>
 
-        </div>                    <tr>
-                        <td>user</td>
-                        <td>{{$book['user']}}</td>
-                    </tr>
-                    <tr>
-                        <td>action</td>
-                    <td><a href="{{ route('editBook', ['id' => $book['id']]) }}" class="btn btn-outline-info">Edit</a></td>
-                    </tr>
-                </tbody>
-            </table>
+                <tr>
+                    <td>user</td>
+                    <td>{{$book['user']}}</td>
+                </tr>
+                <tr>
+                    <td>action</td>
+                    <td><a href="{{ route('editBook', ['id' => $book['id']]) }}" class="btn btn-outline-info">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="container p-2">
         <hr class="border-info">
@@ -88,9 +89,9 @@
                     @foreach ($borrow as $item)
                     @if ($item['status_fines'] == 1)
                     <tr class="bg-danger text-white">
-                    @else
+                        @else
                     <tr>
-                    @endif
+                        @endif
                         <th scope="row">{{$item['id']}}</th>
                         <td>{{$item['member']}}</td>
                         <td>{{$item['date_add']}}</td>
@@ -118,5 +119,5 @@
     </div>
     <div class="container my-4">
         {{ $borrow->links() }}
-    </div> 
-@endsection
+    </div>
+    @endsection

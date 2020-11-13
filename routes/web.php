@@ -84,6 +84,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('borrow/return/input-book', [BorrowingController::class, 'returnBook_select_book'])->name('returnBook');
     Route::get('borrow/return/book/{id}', [BorrowingController::class, 'returnBook'])->name('returnBookValid');
     Route::post('borrow/return/book/{id}', [BorrowingController::class, 'returnBook'])->name('returnBookValid');
+    //  borrow extension
+    Route::get('borrow/extension/input', [BorrowingController::class, 'BorrowingExtentionsInput'])->name('BorrowingExtentionsInput');
+    Route::post('borrow/extension/input/', [BorrowingController::class, 'BorrowingExtentionsInput']);
+    Route::get('borrow/extension/book/{book_id}/borrow/{borrow_id}', [BorrowingController::class, 'BorrowingExtentionDetail'])->name('BorrowingExtentionDetail');
+    Route::post('borrow/extension/book/{book_id}/borrow/{borrow_id}', [BorrowingController::class, 'BorrowingExtentionDetail']);
     
     // end borrowing
 });
