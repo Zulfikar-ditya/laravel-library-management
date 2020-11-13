@@ -64,7 +64,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route ('addBook')}}">Add Book</a>
                             <a class="dropdown-item" href="{{ route('bookList') }}">List Book</a>
-                            <a class="dropdown-item" href="#">Book Lost</a>
+                            <a class="dropdown-item" href="{{ route ('BookLostInput')}}">Book Lost</a>
                         </div>
                     </li>
 

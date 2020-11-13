@@ -6,7 +6,7 @@
     <div class="container" style="margin-top: 100px">
         <div class="table-responsive table-hover">
             <table class="table">
-                <thead class="bg-info text-center">
+                <thead class="bg-info text-center text-white">
                     <th>Member</th>
                     <th>Info</th>
                 </thead>
@@ -62,10 +62,10 @@
                 </thead>
                 <tbody>
                     @foreach ($borrow as $item)
-                    @if ($item['status'] == 1)
-                    <tr>
-                    @else
+                    @if ($item['status_fines'] == 1)
                     <tr class="bg-danger text-white">
+                    @else
+                    <tr>
                     @endif
                         <th scope="row">{{$item['id']}}</th>
                         <td>{{$item['book']}}</td>

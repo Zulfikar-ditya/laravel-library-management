@@ -50,6 +50,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('book/edit-book/{id}', [BookController::class, 'edit']);
     // detail
     Route::get('book/history-detail/{id}', [BookController::class, 'DetailHistory'])->name('historyBook');
+    // book lost
+    Route::get('book/book-lost/input', [BookController::class, 'BookLostInput'])->name('BookLostInput');
+    Route::post('book/book-lost/input', [BookController::class, 'BookLostInput'])->name('BookLostInput');
+    Route::get('book/book-lost/detail/{id}', [BookController::class, 'BookLostDetail'])->name('BookLostDetail');
+    Route::post('book/book-lost/detail/{id}', [BookController::class, 'BookLostDetail'])->name('BookLostDetail');
     // end book
 
     // member

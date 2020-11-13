@@ -92,7 +92,52 @@ class BookController extends Controller
         return view('book.history-detail', ['book' => $book, 'borrow' => $borrow]);
     }
 
-    function BookLost() {
-        
+    function BookLostInput(Request $request) {
+        if ($request->isMethod('post')) {
+            $GetBook = book::find($request->book_id);
+            if ($GetBook == NULL) {
+                $request->session()->flash('book_not_found');
+                return redirect('book/book-lost/input');
+            }
+            if ($GetBook['status'] == 0) {
+                $request->session()->flash('book_is_lost');
+                return redirect('book/book-lost/input');
+            }
+            $redirect = str_replace('$id$', $GetBook['id'], 'book/book-lost/detail/$id$');
+            return redirect($redirect);
+        }
+        return view('book.book-lost-input');
+    }
+
+    function BookLostDetail(Request $request, $id) {
+        $GetBook = book::findOrFail($id);
+        if ($GetBook['status'] == 0) {
+            $request->session()->flash('book_is_lost');
+            return redirect('book/book-lost/input');
+        }
+        if ($GetBook['status_borrowed'] == 1) {
+            $BorrowStatus = true;
+            $GetBorrow = borrowing::where('status', '=', 1, 'and','book', '=', $GetBook['id'])->get();
+        }
+        else {
+            $BorrowStatus = false;
+            $GetBorrow = [];
+        }
+        if ($request->isMethod('post')) {
+            $GetBook['status'] = 0;
+            if ($GetBook['status_borrowed'] == 1) {
+                $GetBook['status_borrowed'] = 0;
+                $GetBorrow[0]['status'] = 0;
+                $GetBorrow[0]->save();
+            }
+            $GetBook->save();
+            if ($request->LostAgain) {
+                return redirect('book/book-lost/input');
+            }
+            else {
+                return redirect('book/book-list/');
+            }
+        }
+        return view('book.book-lost-detail', ['book' => $GetBook, 'item' => $GetBorrow, 'borrow_status' => $BorrowStatus]);
     }
 }

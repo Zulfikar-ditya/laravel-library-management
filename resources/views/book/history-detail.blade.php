@@ -6,7 +6,7 @@
     <div class="container" style="margin-top: 100px">
         <div class="table-responsive table-hover">
             <table class="table">
-                <thead class="bg-info text-center">
+                <thead class="bg-info text-center text-white">
                     <th>Book</th>
                     <th>Info</th>
                 </thead>
@@ -47,7 +47,8 @@
                         <td>category</td>
                         <td>{{$book['category']}}</td>
                     </tr>
-                    <tr>
+
+        </div>                    <tr>
                         <td>user</td>
                         <td>{{$book['user']}}</td>
                     </tr>
@@ -57,7 +58,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
     </div>
     <div class="container p-2">
         <hr class="border-info">
@@ -78,10 +78,10 @@
                 </thead>
                 <tbody>
                     @foreach ($borrow as $item)
-                    @if ($item['status'] == 1)
-                    <tr>
-                    @else
+                    @if ($item['status_fines'] == 1)
                     <tr class="bg-danger text-white">
+                    @else
+                    <tr>
                     @endif
                         <th scope="row">{{$item['id']}}</th>
                         <td>{{$item['member']}}</td>
