@@ -89,6 +89,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('borrow/extension/input/', [BorrowingController::class, 'BorrowingExtentionsInput']);
     Route::get('borrow/extension/book/{book_id}/borrow/{borrow_id}', [BorrowingController::class, 'BorrowingExtentionDetail'])->name('BorrowingExtentionDetail');
     Route::post('borrow/extension/book/{book_id}/borrow/{borrow_id}', [BorrowingController::class, 'BorrowingExtentionDetail']);
+    // detail
+    Route::get('borrow/detail/{id}/', [BorrowingController::class, 'detail'])->name('detailBorrowing');
     
     // end borrowing
 });

@@ -214,4 +214,12 @@ class BorrowingController extends Controller
         return view('borrowing.extension-detail', ['book' => $book, 'borrow' => $borrow]);
     }
 
+    function detail(Request $request, $id) {
+        $data = borrowing::findOrFail($id);
+        if ($data['status'] == 0) {
+            $request->session()->flash('already_returned');
+            return redirect(route('listBorrow'));
+        }
+        return view('borrowing.detail', ['data' => $data]);
+    }
 }

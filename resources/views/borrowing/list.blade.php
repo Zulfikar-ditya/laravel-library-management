@@ -12,6 +12,14 @@
             </button>
         </div>
         @endif
+        @if (session('already_returned'))
+        <div class="alert alert-success alert-dismissible fade show text-capitalize" role="alert">
+            Success Add New Borrowing
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         <form action="" class="form-inline mb-4 text-capitalize" method="get">
             <div class="form-group">
                 <select name="field" id="" class="form-control mr-3 mb-3">
@@ -52,7 +60,7 @@
                     <tr class="bg-danger text-white">
                     @endif
                         <th scope="row">#</th>
-                        <td>{{$item['book']}}</td>
+                        <td><a href="{{ route('detailBorrowing', ['id' => $item['id']]) }}">{{$item['book']}}</a></td>
                         <td>{{$item['member']}}</td>
                         @if ($item['status_fines'] == 0)
                         <td class="text-danger"><i class="fas fa-times"></i></td>
