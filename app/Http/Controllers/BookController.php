@@ -91,6 +91,17 @@ class BookController extends Controller
     function DetailHistory($id) {
         $book = book::findOrFail($id);
         $borrow = borrowing::where('book', '=', $book['id'])->paginate(50);
+        $today = date('Y-m-d');
+        foreach ($borrow as $item) {
+            if ($item['status'] == 0) {
+                $oneBorrow = borrowing::find($item['id']);
+                $date_must_back = $oneBorrow['date_must_back'];
+                if (strtotime($today) > strtotime($date_must_back)) {
+                    $oneBorrow['status_fines'] = 1;
+                    $oneBorrow->save();
+                }
+            }
+        }
         return view('book.history-detail', ['book' => $book, 'borrow' => $borrow]);
     }
 

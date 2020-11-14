@@ -3,7 +3,7 @@
 @section('title', '| Borrowing - List')
 
 @section('content')
-    <div class="container" style="margin-top: 100px">
+    <div class="container" style="margin-top: 100px;">
         @if (session('add_success'))
         <div class="alert alert-success alert-dismissible fade show text-capitalize" role="alert">
             Success Add New Borrowing
@@ -48,7 +48,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Book</th>
                     <th scope="col">member</th>
-                    <th scope="col">satus fines</th>
+                    <th scope="col">status fines</th>
                     <th scope="col">date add</th>
                     <th scope="col">date must back</th>
                 </thead>
@@ -59,9 +59,9 @@
                     @else
                     <tr class="bg-danger text-white">
                     @endif
-                        <th scope="row">#</th>
-                        <td><a href="{{ route('detailBorrowing', ['id' => $item['id']]) }}">{{$item['book']}}</a></td>
-                        <td>{{$item['member']}}</td>
+                        <th scope="row"><a href="{{ route('detailBorrowing', ['id' => $item['id']]) }}">#</a></th>
+                        <td><a href="{{ route('historyBook', ['id' => $item['book']]) }}">{{$item['book']}}</a></td>
+                        <td><a href="{{ route('detailMember', ['id' => $item['member']]) }}">{{$item['member']}}</a></td>
                         @if ($item['status_fines'] == 0)
                         <td class="text-danger"><i class="fas fa-times"></i></td>
                         @else

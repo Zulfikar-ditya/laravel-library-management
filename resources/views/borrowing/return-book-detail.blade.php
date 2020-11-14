@@ -12,12 +12,12 @@
                 </thead>
                 <tbody class="text-capitalize text-center">
                     <tr>
-                        <td>title</td>
-                        <td>{{$borrow[0]->book}}</td>
+                        <td>book</td>
+                        <td><a href="{{ route('historyBook', ['id' => $borrow[0]->book]) }}">{{$borrow[0]->book}}</a></td>
                     </tr>
                     <tr>
                         <td>member</td>
-                        <td>{{$borrow[0]->member}}</td>
+                    <td><a href="{{ route('detailMember', ['id' => $borrow[0]->member]) }}">{{$borrow[0]->member}}</a></td>
                     </tr>
                     @if ($borrow[0]->status_fines == 0)
                     <tr>

@@ -27,7 +27,11 @@
                         <td>date must back</td>
                         <td>{{$data['date_must_back']}}</td>
                     </tr>
+                    @if ($data['status_fines'] == 0)
                     <tr>
+                    @else
+                    <tr class="bg-danger text-white">
+                    @endif
                         <td>status fines</td>
                         @if ($data['status_fines'] == 0)
                         <td class="text-danger"><i class="fas fa-times"></i></td>

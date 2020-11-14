@@ -83,6 +83,17 @@ class MemberController extends Controller
     function detailHistory($id) {
         $member = member::findOrFail($id);
         $borrow = borrowing::where('member', '=', $member['id'])->paginate(50);
+        $today = date('Y-m-d');
+        foreach ($borrow as $item) {
+            if ($item['status'] == 0) {
+                $oneBorrow = borrowing::find($item['id']);
+                $date_must_back = $oneBorrow['date_must_back'];
+                if (strtotime($today) > strtotime($date_must_back)) {
+                    $oneBorrow['status_fines'] = 1;
+                    $oneBorrow->save();
+                }
+            }
+        }
         return view('member.detail-history', ['member' => $member, 'borrow' => $borrow]);
     }
 }

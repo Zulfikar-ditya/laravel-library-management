@@ -9,15 +9,6 @@ use App\Models\borrowing;
 use App\Models\book;
 
 
-function FineCheck($id) {
-    $borrow = borrowing::find($id)->get();
-    if (strtotime($borrow[0]['date_must_back']) < date('Y-m-d')) {
-        $borrow[0]['status_fines'] = 1;
-        $borrow[0]->save();
-    }
-    return $borrow;
-}
-
 class BorrowingController extends Controller
 {
 
@@ -80,6 +71,7 @@ class BorrowingController extends Controller
         }
         return view('borrowing.add-borrow', ['member' => $member,]);
     }
+    
     function list(Request $request) {
         $data = borrowing::where('status', '=', 1)->paginate(50);
         // if($request->field) {
@@ -99,13 +91,17 @@ class BorrowingController extends Controller
                 $data = borrowing::where('status', '=', 1, 'and','status_fines', '=', 0)->paginate(50);
             }
         }
-
+        $today = date('Y-m-d');
         foreach ($data as $item) {
             if ($item['status'] == 0) {
-                FineCheck($item);
-            } 
+                $borrow = borrowing::find($item['id']);
+                $date_must_back = $borrow['date_must_back'];
+                if (strtotime($today) > strtotime($date_must_back)) {
+                    $borrow['status_fines'] = 1;
+                    $borrow->save();
+                }
+            }
         }
-
         return view('borrowing.list', ['data' => $data]);
     }
 
