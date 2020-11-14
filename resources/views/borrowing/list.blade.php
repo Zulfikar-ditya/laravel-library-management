@@ -20,16 +20,6 @@
             </button>
         </div>
         @endif
-        <form action="" class="form-inline mb-4 text-capitalize" method="get">
-            <div class="form-group">
-                <select name="field" id="" class="form-control mr-3 mb-3">
-                    <option value="member">member</option>
-                    <option value="book">book</option>
-                </select>
-                <input type="search" name="search" id="" class="form-control mr-3 mb-3" placeholder="Use Id Book Or Member" required>
-                <button type="submit" class="btn btn-outline-info mb-3">Search <i class="fas fa-search"></i></button>
-            </div>
-        </form>
 
         <form action="" method="get" class="form-inline mb-4">
             <div class="form-group">

@@ -74,14 +74,6 @@ class BorrowingController extends Controller
     
     function list(Request $request) {
         $data = borrowing::where('status', '=', 1)->paginate(50);
-        // if($request->field) {
-        //     if($request->field == ['name']) {
-
-        //     }
-        //     elseif($request->field == ['book']) {
-                
-        //     }
-        // }
 
         if ($request->filter) {
             if($request->filter == 'status_true') {
