@@ -32,7 +32,7 @@
                     @if ($book['status'] == 1)
                     <td class="text-success"><i class="far fa-check-circle"></i></td>
                     @else
-                    <td class="text-success"><i class="fas fa-times"></i></td>
+                    <td class="text-danger"><i class="fas fa-times"></i></td>
                     @endif
                 </tr>
                 <tr>
@@ -40,7 +40,7 @@
                     @if ($book['status_borrowed'] == 1)
                     <td class="text-success"><i class="far fa-check-circle"></i></td>
                     @else
-                    <td class="text-success"><i class="fas fa-times"></i></td>
+                    <td class="text-danger"><i class="fas fa-times"></i></td>
                     @endif
                 </tr>
                 <tr>

@@ -141,6 +141,7 @@ class BookController extends Controller
             if ($GetBook['status_borrowed'] == 1) {
                 $GetBook['status_borrowed'] = 0;
                 $GetBorrow[0]['status'] = 0;
+                $GetBorrow[0]['date_back'] = date('Y-m-d');
                 $GetBorrow[0]->save();
             }
             $GetBook->save();

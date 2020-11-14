@@ -72,8 +72,32 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Member</td>
-                    <td>{{$item[0]['member']}}</td>
+                    <td>Book</td>
+                    <td><a href="{{ route('historyBook', ['id' => $item[0]['book']]) }}">{{$item[0]['book']}}</a></td>
+                </tr>
+                <tr>
+                    <td>member</td>
+                    <td><a href="{{ route('detailMember', ['id' => $item[0]['member']]) }}">{{$item[0]['member']}}</a></td>
+                </tr>
+                <tr>
+                    <td>date add</td>
+                    <td>{{$item[0]['date_add']}}</td>
+                </tr>
+                <tr>
+                    <td>date must back</td>
+                    <td>{{$item[0]['date_must_back']}}</td>
+                </tr>
+                @if ($item[0]['status_fines'] == 0)
+                <tr>
+                @else
+                <tr class="bg-danger text-white">
+                @endif
+                    <td>status fines</td>
+                    @if ($item[0]['status_fines'] == 0)
+                    <td class="text-danger"><i class="fas fa-times"></i></td>
+                    @else
+                    <td class="text-success"><i class="far fa-check-circle"></i></td>    
+                    @endif
                 </tr>
             </tbody>
         </table>
@@ -91,7 +115,7 @@
                     <form action="" method="post" class="row justify-content-around">
                         @csrf
                         <input type="submit" name="Lost" value="Confirm" class="btn btn-outline-info">
-                        <input type="submit" name="LostAgain" value="Confirm And Add Another" class="btn btn-outline-success">
+                        <input type="submit" name="LostAgain" value="Confirm And Find Another Another" class="btn btn-outline-success">
                     </form>
                 </div>
             </div>

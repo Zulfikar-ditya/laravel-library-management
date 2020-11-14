@@ -32,7 +32,7 @@
                     <option value="status_true">Status True</option>
                     <option value="status_false">Status false</option>
                 </select>
-                <button class="btn btn-outline-primary mb-3" type="submit">Go <i class="fas fa-external-link-alt"></i></button>
+                <button class="btn btn-outline-info mb-3" type="submit">Go <i class="fas fa-external-link-alt"></i></button>
             </div>
         </form>
         
@@ -44,7 +44,6 @@
                     <th scope="col">email</th>
                     <th scope="col">date of birth</th>
                     <th scope="col">status</th>
-                    <th scope="col">action</th>
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
@@ -58,7 +57,6 @@
                         @else
                         <td class="text-danger"><i class="fas fa-times"></i></td>
                         @endif
-                    <td><a href="{{ route('editMember', ['id' => $item['id']] ) }}" class="btn btn-outline-info">Edit</a></td>
                     </tr>
                     @endforeach
                 </tbody>

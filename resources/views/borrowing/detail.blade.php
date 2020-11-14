@@ -13,11 +13,11 @@
                 <tbody class="text-capitalize text-center">
                     <tr>
                         <td>Book</td>
-                        <td>{{$data['book']}}</td>
+                        <td><a href="{{ route('historyBook', ['id' => $data['book']]) }}">{{$data['book']}}</a></td>
                     </tr>
                     <tr>
                         <td>member</td>
-                        <td>{{$data['member']}}</td>
+                        <td><a href="{{ route('historyBook', ['id' => $data['member']]) }}">{{$data['member']}}</a></td>
                     </tr>
                     <tr>
                         <td>date add</td>
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <td>action</td>
-                    <td><a href="{{ route('returnBookValid', ['id' => $data['book']]) }}" class="btn btn-outline-info">return</a></td>
+                        <td><a href="{{ route('returnBookValid', ['id' => $data['book']]) }}" class="btn btn-outline-info">return</a></td>
                     </tr>
                 </tbody>
             </table>

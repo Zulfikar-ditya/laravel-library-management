@@ -27,17 +27,17 @@
                 <tr>
                     <td>status</td>
                     @if ($book['status'] == 1)
-                    <td class="text-success"><i class="far fa-check-circle"></i></td>
-                    @else
                     <td class="text-success"><i class="fas fa-times"></i></td>
+                    @else
+                    <td class="text-danger"><i class="far fa-check-circle"></i></td>
                     @endif
                 </tr>
                 <tr>
                     <td>status borrow</td>
                     @if ($book['status_borrowed'] == 1)
-                    <td class="text-success"><i class="far fa-check-circle"></i></td>
-                    @else
                     <td class="text-success"><i class="fas fa-times"></i></td>
+                    @else
+                    <td class="text-danger"><i class="far fa-check-circle"></i></td>
                     @endif
                 </tr>
                 <tr>
@@ -70,43 +70,39 @@
     </div>
     <div class="table-responsive table-hover">
         <table class="table text-capitalize">
-            <thead class="bg-info text-white">
-                <th scope="col">ID</th>
-                <th scope="col">member</th>
-                <th scope="col">date add</th>
-                <th scope="col">date must back</th>
-                <th scope="col">date back</th>
-                <th scope="col">status</th>
-                <th scope="col">status fine</th>
+            <thead class="bg-info text-white text-capitalize">
+                <th></th>
+                <th></th>
             </thead>
-            <tbody>
-                @foreach ($borrow as $item)
-                @if ($item['status_fines'] == 1)
-                <tr class="bg-danger text-white">
-                @else
+            <tbody class="text-capitalize text-center">
                 <tr>
+                    <td>Book</td>
+                    <td><a href="{{ route('historyBook', ['id' => $borrow[0]['book']]) }}">{{$borrow[0]['book']}}</a></td>
+                </tr>
+                <tr>
+                    <td>member</td>
+                    <td><a href="{{ route('historyBook', ['id' => $borrow[0]['member']]) }}">{{$borrow[0]['member']}}</a></td>
+                </tr>
+                <tr>
+                    <td>date add</td>
+                    <td>{{$borrow[0]['date_add']}}</td>
+                </tr>
+                <tr>
+                    <td>date must back</td>
+                    <td>{{$borrow[0]['date_must_back']}}</td>
+                </tr>
+                @if ($borrow[0]['status_fines'] == 0)
+                <tr>
+                @else
+                <tr class="bg-danger text-white">
                 @endif
-                    <th scope="row">{{$item['id']}}</th>
-                    <td>{{$item['member']}}</td>
-                    <td>{{$item['date_add']}}</td>
-                    <td>{{$item['date_must_back']}}</td>
-                    @if ($item['date_back'] == NULL)
-                    <td>-</td>
-                    @else
-                    <td>{{$item['date_back']}}</td>
-                    @endif
-                    @if ($item['status'] == 1)
-                    <td class="text-success"><i class="far fa-check-circle"></i></td>
-                    @else
+                    <td>status fines</td>
+                    @if ($borrow[0]['status_fines'] == 0)
                     <td class="text-danger"><i class="fas fa-times"></i></td>
-                    @endif
-                    @if ($item['status_fines'] == 1)
-                    <td class="text-success"><i class="far fa-check-circle"></i></td>
                     @else
-                    <td class="text-danger"><i class="fas fa-times"></i></td>
+                    <td class="text-success"><i class="far fa-check-circle"></i></td>    
                     @endif
                 </tr>
-                @endforeach
             </tbody>
         </table>
     </div>    

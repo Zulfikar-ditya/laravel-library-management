@@ -169,7 +169,7 @@ class BorrowingController extends Controller
                 $request->session()->flash('book_not_exist');
                 return redirect(route('BorrowingExtentionsInput'));
             }
-            if ($book['status_borrowed'] == 0) {
+            if ($book['status_borrowed'] == 1) {
                 $request->session()->flash('book_not_borrowed');
                 return redirect(route('BorrowingExtentionsInput'));
             }
@@ -187,7 +187,7 @@ class BorrowingController extends Controller
             $request->session()->flash('book_not_exist');
             return redirect(route('BorrowingExtentionsInput'));
         }
-        if ($book['status_borrowed'] == 0) {
+        if ($book['status_borrowed'] == 1) {
             $request->session()->flash('book_not_borrowed');
             return redirect(route('BorrowingExtentionsInput'));
         }

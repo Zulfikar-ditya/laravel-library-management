@@ -35,7 +35,7 @@
                     <option value="status_borrowed_true">Status Borrowed True</option>
                     <option value="status_borrowed_false">Status Borrowed False</option>
                 </select>
-                <button class="btn btn-outline-primary mb-3" type="submit">Go <i class="fas fa-external-link-alt"></i></button>
+                <button class="btn btn-outline-info mb-3" type="submit">Go <i class="fas fa-external-link-alt"></i></button>
             </div>
         </form>
 
@@ -49,7 +49,6 @@
                     <th scope="col">status</th>
                     <th scope="col">status borrowed</th>
                     <th scope="col">category</th>
-                    <th scope="col">action</th>
                 </thead>
 
                 <tbody>
@@ -69,7 +68,6 @@
                             <td class="text-danger"><i class="fas fa-times"></i></td>
                         @endif
                         <td>{{$item['category']}}</td>
-                    <td><a href="{{ route('editBook', ['id' => $item['id']] ) }}" class="btn btn-outline-success">Edit</a></td>
                     </tr>
                     @endforeach
                 </tbody>
